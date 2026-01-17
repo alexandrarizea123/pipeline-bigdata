@@ -2,7 +2,7 @@ import json
 from kafka import KafkaConsumer, KafkaProducer
 
 INPUT_TOPIC = "iot_sensors"
-CLEANED_TOPIC = "iot_cleaned"
+CLEANED_TOPIC = "iot_processed"
 ALERTS_TOPIC = "iot_alerts"
 
 consumer = KafkaConsumer(
