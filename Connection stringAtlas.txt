@@ -1,0 +1,9 @@
+mongodb+srv://proiectibd_db_user:PAROLA@cluster0.d0wtmr3.mongodb.net/iot?retryWrites=true&w=majority
+
+Database: iot
+Collections: iot_processed, iot_alerts
+Time field: ts
+
+user: proiectibd_db_user
+pass: Fq20620LQNSFLUKY
+
