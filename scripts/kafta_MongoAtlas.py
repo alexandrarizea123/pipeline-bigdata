@@ -5,11 +5,11 @@ from datetime import datetime, timezone
 from kafka import KafkaConsumer
 from pymongo import MongoClient, ASCENDING, errors
 
-# ---- CONFIG ----
-BOOTSTRAP = "localhost:9092"  # Kafka (Docker) expus pe PC-ul tau
+# Config
+BOOTSTRAP = "localhost:9092"  # Kafka (Docker)
 TOPICS = ["iot_processed", "iot_alerts"]
 
-# ✅ MongoDB Atlas (cu /iot)
+# MongoDB Atlas (cu /iot)
 MONGO_URI = (
     "mongodb+srv://proiectibd_db_user:Fq20620LQNSFLUKY@cluster0.d0wtmr3.mongodb.net/"
     "iot?retryWrites=true&w=majority"
@@ -18,8 +18,7 @@ DB_NAME = "iot"
 
 BATCH_SIZE = 1000
 POLL_TIMEOUT_MS = 1000
-IDLE_EXIT_SECONDS = 20  # daca nu mai vin mesaje, iese (import batch)
-# ----------------
+IDLE_EXIT_SECONDS = 20  # daca nu mai vin mesaje, iese 
 
 
 def add_ts_field(doc: dict) -> dict:
