@@ -98,7 +98,7 @@ def main():
             value_deserializer=lambda x: json.loads(x.decode("utf-8")),
         )
 
-    print("✅ Kafka -> MongoDB Atlas import pornit")
+    print("[OK] Kafka -> MongoDB Atlas import pornit")
     print(f"   DB: {DB_NAME} | topics: {', '.join(TOPICS)}")
     print("   (se opreste singur dupa ce nu mai vin mesaje)")
     print("   Ctrl+C pentru stop manual.\n")
@@ -134,7 +134,7 @@ def main():
 
             # daca nu mai vin mesaje un timp, iesim
             if not got_any and (time.time() - last_any_msg) > IDLE_EXIT_SECONDS:
-                print("\n✅ Import terminat (nu mai sunt mesaje noi).")
+                print("\n[OK] Import terminat (nu mai sunt mesaje noi).")
                 break
 
     except KeyboardInterrupt:

@@ -10,14 +10,17 @@ producer = KafkaProducer(
     key_serializer=lambda x: x.encode('utf-8')  # Cheie pentru scalabilitate
 )
 
+import os
+
 TOPIC_NAME = 'iot_sensors'
-CSV_FILE_PATH = r"D:\Facultate\1.MASTER\Anul_1\M1_SEM1\Big Data\Proiect\Date\Environmental Sensor Telemetry Data\iot_telemetry_data2.csv"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_FILE_PATH = os.path.join(SCRIPT_DIR, "..", "data", "iot_demo_data.csv")
 
 def run_simulation():
     print(f"Începem simularea citirii datelor din {CSV_FILE_PATH}...")
     
     
-    for chunk in pd.read_csv(CSV_FILE_PATH, sep=';', header=1, chunksize=1000):
+    for chunk in pd.read_csv(CSV_FILE_PATH, chunksize=1000):
         
         for index, row in chunk.iterrows():
             

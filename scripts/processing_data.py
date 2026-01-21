@@ -20,6 +20,15 @@ producer = KafkaProducer(
     value_serializer=lambda x: json.dumps(x).encode("utf-8")
 )
 
+def parse_bool(value):
+    """Convert string 'true'/'false' to actual boolean."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        return value.lower() == "true"
+    return bool(value)
+
+
 def is_valid(record):
     """Validate sensor limits"""
     try:
@@ -53,15 +62,15 @@ def process_stream():
     for message in consumer:
         raw = message.value
         processed = {
-            "timestamp": int(raw["ts"]),
+            "timestamp": int(float(raw["ts"])),
             "device_id": raw["device"],
             "temp": float(raw["temp"]),
             "humidity": float(raw["humidity"]),
             "co": float(raw["co"]),
             "lpg": float(raw["lpg"]),
             "smoke": float(raw["smoke"]),
-            "light": bool(raw["light"]),
-            "motion": bool(raw["motion"])
+            "light": parse_bool(raw["light"]),
+            "motion": parse_bool(raw["motion"])
         }
 
         if not is_valid(processed):
