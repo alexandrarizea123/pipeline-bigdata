@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-Generates synthetic IoT sensor data for demo purposes.
-Usage: python generate_demo_data.py [num_records]
-"""
-
 import csv
 import random
 import sys
